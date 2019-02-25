@@ -2,14 +2,20 @@ const Pile = require('./Pile')
 const Player = require('./Player');
 
 module.exports = class Game {
-  constructor({deck, playerCount = 1, players}) {
+  constructor({deck, playerCount = 1, players = []}) {
     this.deck = deck;
     const startCard = this.deck.draw();
     this.pile = new Pile({card: startCard});
-    this.players = [];
 
-    for (let i = 0; i < playerCount; i++) {
-      this.players.push(new Player({deck: this.deck, pile: this.pile, label: `Player ${i}`}));
+    this.players = players;
+
+    for (let player of players) {
+      player.deck = this.deck;
+      player.pile = this.pile;
+
+      for (let i = 0; i < 7; i++) {
+        player.draw();
+      }
     }
 
     this.direction = 1;
