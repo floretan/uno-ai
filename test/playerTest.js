@@ -13,7 +13,12 @@ describe('player test', () => {
     const player = new Player({deck, pile, label: 'Player 1'});
 
     assert.strictEqual(typeof player, 'object');
-    assert.strictEqual(player.hand.length, 7);
+    assert.strictEqual(player.hand.length, 0);
+
+    player.draw();
+    player.draw();
+
+    assert.strictEqual(player.hand.length, 2);
   });
 
   it('player can play', () => {
@@ -22,7 +27,6 @@ describe('player test', () => {
     const player = new Player({deck, pile, label: 'Player 1'});
 
     // Add a card that the player can play.
-    player.hand.length = 0;
     player.hand.push(new Card({symbol: 0, color: 1}));
 
     assert.strictEqual(player.canPlay(), true);
@@ -37,7 +41,6 @@ describe('player test', () => {
     const player = new Player({deck, pile, label: 'Player 1'});
 
     // Set the card in the deck.
-    deck.cards.length = 0;
     deck.cards.push(new Card({symbol: 4, color: 1}));
 
     // Add a card that the player cannot play.
@@ -57,7 +60,6 @@ describe('player test', () => {
     const player = new Player({deck, pile, label: 'Player 1'});
 
     // Add a card that the player can play.
-    player.hand.length = 0;
     player.hand.push(new Card({symbol: 0, color: 1}));
 
     assert.strictEqual(player.hasWon(), false);

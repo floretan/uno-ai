@@ -5,10 +5,6 @@ module.exports = class Player {
     this.hand = [];
     this.deck = deck;
     this.pile = pile;
-
-    for (let i = 0; i < 7; i++) {
-      this.hand.push(this.deck.draw());
-    }
   }
 
   canPlay() {
