@@ -1,9 +1,10 @@
 const Pile = require('./Pile')
 const Player = require('./Player');
+const Deck = require('./Deck');
 
 module.exports = class Game {
-  constructor({deck, playerCount = 1, players = []}) {
-    this.deck = deck;
+  constructor({playerCount = 1, players = []}) {
+    this.deck = new Deck();
     const startCard = this.deck.draw();
     this.pile = new Pile({card: startCard});
 

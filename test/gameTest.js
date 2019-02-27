@@ -1,14 +1,11 @@
 
 const assert = require('assert');
 const Game = require('../src/Game');
-const Deck = require('../src/Deck');
 const Player = require('../src/Player');
 
 describe('game test', () => {
   it('is a game', () => {
-    const deck = new Deck();
     const game = new Game({
-      deck,
       players: [new Player({label: 'Player 1'})]
     });
 
@@ -21,9 +18,7 @@ describe('game test', () => {
   });
 
   it('takes turns', () => {
-    const deck = new Deck();
     const game = new Game({
-      deck,
       players: [
         new Player({label: 'Player 1'}),
         new Player({label: 'Player 2'}),
@@ -35,9 +30,7 @@ describe('game test', () => {
   });
 
   it('continues until winning', () => {
-    const deck = new Deck();
     const game = new Game({
-      deck,
       players: [new Player({label: 'Player 1'})]
     });
 
@@ -51,9 +44,7 @@ describe('game test', () => {
   });
 
   it('two players continue until winning', () => {
-    const deck = new Deck();
     const game = new Game({
-      deck,
       players: [
         new Player({label: 'Player 1'}),
         new Player({label: 'Player 2'}),
