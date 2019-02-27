@@ -8,40 +8,27 @@ module.exports = class Player {
   }
 
   canPlay() {
-    for (let card of this.hand) {
-      if (this.pile.canPlay({card})) {
-        return true;
-      }
-    }
-
-    return false;
+    return this.hand.some(card => this.pile.canPlay({card}));
   }
 
   play() {
     // Very simple approach, play the first playable card.
-    for (let card of this.hand) {
-      if (this.pile.canPlay({card})) {
-        const playedCard = this.hand.splice(this.hand.indexOf(card), 1).pop();
-        let color;
-
-        if (playedCard.allowsPick()) {
-
-          const coloredCard = this.hand.find(c => typeof c.color !== 'undefined')
-          if (coloredCard) {
-            // Pick the color existing card on hand.
-            color = coloredCard.color;
-          }
-          else {
-            // Pick a random color.
-            color = Math.floor(Math.random() * 4);
-          }
-        }
-
-        this.pile.play({card: playedCard, color, label: this.label})
-
-        break;
+    const card = this.hand.find(card => this.pile.canPlay({card}));
+    const playedCard = this.hand.splice(this.hand.indexOf(card), 1).pop();
+    let color;
+    if (playedCard.allowsPick()) {
+      const coloredCard = this.hand.find(c => typeof c.color !== 'undefined')
+      if (coloredCard) {
+        // Pick the color existing card on hand.
+        color = coloredCard.color;
+      }
+      else {
+        // Pick a random color.
+        color = Math.floor(Math.random() * 4);
       }
     }
+
+    this.pile.play({card: playedCard, color, label: this.label})
   }
 
   draw() {
