@@ -1,17 +1,30 @@
+import {Card, Color, Symbol} from "./Card";
 
 module.exports = class Pile {
-  constructor({card}) {
+
+  cards: Card[];
+  currentSymbol: Symbol;
+  currentColor: Color;
+
+  constructor(card: Card) {
     if (!card) {
       throw new Error('Card must be specified');
     }
 
     this.cards = [card];
     this.currentSymbol = card.symbol;
-    this.currentColor = card.color;
-    console.log('Start with', card.toString());
+
+    if (typeof card.color !== 'undefined') {
+      this.currentColor = card.color;
+    }
+    else {
+      throw new Error("Cannot start a pile with a card that doesn't have a color");
+    }
+  
+    // console.log('Start with', card.toString());
   }
 
-  canPlay({card}) {
+  canPlay({card}): boolean {
     if (this.currentSymbol === card.symbol
       || this.currentColor === card.color
       || card.allowsPick()) {
@@ -31,16 +44,16 @@ module.exports = class Pile {
         if (typeof color == 'undefined') {
           throw new Error(`Must specify color when playing ${card.toString()}`);
         }
-        console.log(label, 'plays', card.toString(), 'choose', color);
+        // console.log(label, 'plays', card.toString(), 'choose', color);
         this.currentColor = color;
       }
       else {
         this.currentColor = card.color;
-        console.log(label, 'plays', card.toString());
+        // console.log(label, 'plays', card.toString());
       }
     }
     else {
-      console.log(card, this.currentCard)
+      console.log(card);
       throw new Error(`Invalid card: ${card.toString()}`);
     }
   }
