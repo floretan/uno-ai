@@ -1,4 +1,3 @@
-
 const clc = require('cli-color');
 
 export type Color = 'red' | 'green' | 'blue' | 'yellow';
@@ -59,7 +58,7 @@ export class Card {
     return lookup[this.symbol];
   }
 
-  allowsPick() {
+  allowsPick(): Boolean {
     return this.symbol == 'pick' || this.symbol == 'pickplusfour';
   }
 

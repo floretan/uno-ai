@@ -16,21 +16,21 @@ describe('pile test', () => {
     const pile = new Pile(new Card('1', 'red'));
 
     const card = new Card('1', 'red');
-    assert.strictEqual(pile.canPlay({card}), true);
+    assert.strictEqual(pile.canPlay(card), true);
   });
 
   it('can play card with same symbol', () => {
     const pile = new Pile(new Card('0', 'red'));
 
     const card = new Card('0', 'green');
-    assert.strictEqual(pile.canPlay({card}), true);
+    assert.strictEqual(pile.canPlay(card), true);
   });
 
   it('can play card with same color', () => {
     const pile = new Pile(new Card('0', 'red'));
 
     const card = new Card('3', 'red');
-    assert.strictEqual(pile.canPlay({card}), true);
+    assert.strictEqual(pile.canPlay(card), true);
   });
 
   it('cannot play a card with differing color and symbol', () => {
@@ -38,21 +38,21 @@ describe('pile test', () => {
 
     const card = new Card('1', 'green');
 
-    assert.strictEqual(pile.canPlay({card}), false);
+    assert.strictEqual(pile.canPlay(card), false);
   });
 
   it('can always play the "pick" card', () => {
     const pile = new Pile(new Card('0', 'red'));
     const card = new Card('pick');
 
-    assert.strictEqual(pile.canPlay({card}), true);
+    assert.strictEqual(pile.canPlay(card), true);
   });
 
   it('can always play the "pickplusfour" card', () => {
     const pile = new Pile(new Card('1', 'red'));
     const card = new Card('pickplusfour');
 
-    assert.strictEqual(pile.canPlay({card}), true);
+    assert.strictEqual(pile.canPlay(card), true);
   });
 
   it('plays cards', () => {
@@ -62,11 +62,11 @@ describe('pile test', () => {
     const card3 = new Card('9', 'green');
 
     assert.strictEqual(pile.cards.length, 1);
-    pile.play({card: card1})
+    pile.play(card1)
     assert.strictEqual(pile.cards.length, 2);
-    pile.play({card: card2})
+    pile.play(card2)
     assert.strictEqual(pile.cards.length, 3);
-    pile.play({card: card3})
+    pile.play(card3)
     assert.strictEqual(pile.cards.length, 4);
   });
 });

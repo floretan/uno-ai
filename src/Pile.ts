@@ -24,7 +24,7 @@ module.exports = class Pile {
     // console.log('Start with', card.toString());
   }
 
-  canPlay({card}): boolean {
+  canPlay(card: Card): boolean {
     if (this.currentSymbol === card.symbol
       || this.currentColor === card.color
       || card.allowsPick()) {
@@ -35,21 +35,24 @@ module.exports = class Pile {
     }
   }
 
-  play({card, color, label = 'Play'}) {
-    if (this.canPlay({card})) {
+  play(card: Card, color?: Color, label: string = 'Play') {
+    if (this.canPlay(card)) {
       this.cards.push(card);
       this.currentSymbol = card.symbol;
 
-      if (card.allowsPick()) {
+      if (!card.allowsPick()) {
+        // This second comparison is only needed for TypeScript
+        if (card.color !== undefined) {
+          this.currentColor = card.color;
+        }
+      }
+      else {
         if (typeof color == 'undefined') {
           throw new Error(`Must specify color when playing ${card.toString()}`);
         }
-        // console.log(label, 'plays', card.toString(), 'choose', color);
-        this.currentColor = color;
-      }
-      else {
-        this.currentColor = card.color;
-        // console.log(label, 'plays', card.toString());
+        else {
+          this.currentColor = color;
+        }
       }
     }
     else {
