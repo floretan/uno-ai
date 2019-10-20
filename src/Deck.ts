@@ -1,6 +1,6 @@
 import {Card, Color, Symbol} from "./Card";
 
-module.exports = class Deck {
+export class Deck {
   cards: Card[];
 
   constructor() {
@@ -48,7 +48,12 @@ module.exports = class Deck {
     });
   }
 
-  draw(): Card | undefined {
-    return this.cards.pop();
+  draw(): Card {
+    const card = this.cards.pop();
+    if (card) {
+      return card;
+    }
+
+    throw "Deck is empty";
   }
 };

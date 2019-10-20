@@ -1,8 +1,8 @@
 
 const assert = require('assert');
-const Pile = require('../src/Pile');
 
-import {Card} from "../src/Card";
+import { Card } from "../src/Card";
+import { Pile } from "../src/Pile";
 
 describe('pile test', () => {
   it('is a pile', () => {

@@ -1,7 +1,6 @@
 
 const assert = require('assert');
-const Deck = require('../src/Deck');
-
+import { Deck } from "../src/Deck";
 
 describe('deck test', () => {
   it('is a deck', () => {
@@ -16,4 +15,11 @@ describe('deck test', () => {
     assert.strictEqual(typeof card, 'object');
   });
 
+  it('throws an error if card cannot be drawn', () => {
+    const deck = new Deck();
+    deck.cards = [];
+    assert.throws(() => {
+      deck.draw()
+    })
+  });
 });

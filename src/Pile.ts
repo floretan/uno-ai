@@ -1,16 +1,12 @@
 import {Card, Color, Symbol} from "./Card";
 
-module.exports = class Pile {
+export class Pile {
 
   cards: Card[];
   currentSymbol: Symbol;
   currentColor: Color;
 
   constructor(card: Card) {
-    if (!card) {
-      throw new Error('Card must be specified');
-    }
-
     this.cards = [card];
     this.currentSymbol = card.symbol;
 
@@ -20,8 +16,6 @@ module.exports = class Pile {
     else {
       throw new Error("Cannot start a pile with a card that doesn't have a color");
     }
-  
-    // console.log('Start with', card.toString());
   }
 
   canPlay(card: Card): boolean {
