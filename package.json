@@ -1,12 +1,12 @@
 {
   "dependencies": {
-    "@tensorflow/tfjs-node": "^1.2.11",
-    "@types/mocha": "^5.2.6",
+    "@tensorflow/tfjs-node": "^2.7.0",
+    "@types/mocha": "^5.2.7",
     "cli-color": "^1.4.0",
-    "ts-node": "^8.0.3",
-    "typescript": "^3.3.4000"
+    "ts-node": "^8.10.2",
+    "typescript": "^3.9.7"
   },
   "devDependencies": {
-    "mocha": "^5.2.0"
+    "mocha": "^8.2.0"
   }
 }
